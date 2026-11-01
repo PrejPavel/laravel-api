@@ -16,7 +16,7 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
    ```bash
    php C:\xampp\php\composer.phar install
    ```
-5. na React  *Prosím nepřeklepávej to na isntall ja už to nedavam*
+5. na React  *Prosím nepřeklepávej to na ***isntall*** ja už to nedavam*
    ```bash
    npm install 
    ```
