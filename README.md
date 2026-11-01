@@ -13,33 +13,20 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
 2. narvat to do PHP v xampp složce
 3. nalinkovat nějak php složku a composer v phpstormu
 4. ```bash
-   php C:\xampp\php\composer.phar install
+   php C:\xampp\php\composer.phar install // na něco k composer
    ```
+5. ```bash
+   npm isntall // na react
+   ```
+6. ```bash
+   php artisan key:generate //nějaky encryption key, aby nebyly problemy potom to řvalo na mě se mi nelibilo
+   ```
+7. ```bash
+   php artisan migrate
+   ```
+8. nastavit .env soubor hlavně se prostě ujistit, že tam je mysql místo sqlite
 
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
-```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
-```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+All security vulnerabilities will be promptly addressed.
 
 ## License
 
