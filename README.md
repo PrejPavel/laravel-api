@@ -16,9 +16,9 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
    ```bash
    php C:\xampp\php\composer.phar install
    ```
-5. na React
+5. na React  *Prosím nepřeklepávej to na isntall ja už to nedavam*
    ```bash
-   npm isntall 
+   npm install 
    ```
 6. nějaky encryption key, aby nebyly problemy potom to řvalo na mě se mi nelibilo
    ```bash
