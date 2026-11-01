@@ -9,7 +9,7 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
 
 ## Návod na setup
 
-1. Composer.phar se stáhne z https://getcomposer.org/download/ <-- tady dole z latest stable
+1. Composer.phar se stáhne z [Daunload Kompouzeru](https://getcomposer.org/download/) <-- tady dole z latest stable
 2. narvat to do PHP v xampp složce
 3. nalinkovat nějak php složku a composer v phpstormu
 4. na něco k composer
