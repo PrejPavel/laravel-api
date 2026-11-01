@@ -12,14 +12,17 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
 1. Composer.phar se stáhne z https://getcomposer.org/download/ <-- tady dole z latest stable
 2. narvat to do PHP v xampp složce
 3. nalinkovat nějak php složku a composer v phpstormu
-4. ```bash
-   php C:\xampp\php\composer.phar install // na něco k composer
+4. na něco k composer
+   ```bash
+   php C:\xampp\php\composer.phar install
    ```
-5. ```bash
-   npm isntall // na react
+5. na React
+   ```bash
+   npm isntall 
    ```
-6. ```bash
-   php artisan key:generate //nějaky encryption key, aby nebyly problemy potom to řvalo na mě se mi nelibilo
+6. nějaky encryption key, aby nebyly problemy potom to řvalo na mě se mi nelibilo
+   ```bash
+   php artisan key:generate 
    ```
 7. ```bash
    php artisan migrate
