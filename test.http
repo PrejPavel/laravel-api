@@ -1,0 +1,7 @@
+PUT http://127.0.0.1:8000/api/layouts/1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "grid_json": { "column": 8, "cellHeight": 20, "children": [] }
+}
