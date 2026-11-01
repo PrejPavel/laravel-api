@@ -1,4 +1,4 @@
-## About InfoRozvrh
+# About InfoRozvrh
 
 Něco prostě na telku prostě chápeš 😎😎😎😎
 
