@@ -1,24 +1,21 @@
 ## About InfoRozvrh
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Něco prostě na telku prostě chápeš 😎😎😎😎
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Nevím co dělám ✅
+- Používám PHP framework se kterým jsem nikdy nedělal ✅
+- Všechno z Reactu jsem zapomněl ✅
+- Pomoc .·´¯`(>▂<)´¯`·. ✅
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Návod na setup
 
-## Learning Laravel
+1. Composer.phar se stáhne z https://getcomposer.org/download/ <-- tady dole z latest stable
+2. narvat to do PHP v xampp složce
+3. nalinkovat nějak php složku a composer v phpstormu
+4. ```bash
+   php C:\xampp\php\composer.phar install
+   ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
 
 ## Agentic Development
 
