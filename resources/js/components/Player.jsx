@@ -1,7 +1,9 @@
 import {GridStack} from "gridstack/dist/react";
 import 'gridstack/dist/gridstack.min.css';
 import Zone from "./Zone.jsx";
+import {useState, useEffect } from "react";
 
+/*
 const options = {
     column: 6,
     cellHeight: 20,
@@ -30,9 +32,30 @@ const options = {
         },
     ]
 }
+*/
+
 const config = {Zone: Zone}; //je to vedle aby se pokaždné nevytvářel znova objekt
 export default function Player() {
-    return (
-        <GridStack options={options} components={config} />
-    )
+    //WARN: nedavat hooky mimo komponentu !!!
+    const fetchUrl = "http://localhost:8000/api/layouts/2" //TODO: nevim ted je nemmene id
+    const [layout, setLayout] = useState(null);
+    useEffect(() => {
+        const fetchLayout = async () => {
+            try {
+                const response = await fetch(fetchUrl);
+                const data = await response.json();
+                setLayout(data.grid_json);
+            } catch (error) {
+                console.log("Layout fetch Error: " + Error);
+            }
+        }
+        fetchLayout();
+    }, [])
+    if (layout === null) {
+        return <div><strong>Louding</strong></div>;
+    } else {
+        return (
+            <GridStack options={layout} components={config} />
+        )
+    }
 }
