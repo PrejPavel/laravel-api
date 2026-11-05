@@ -37,34 +37,48 @@ const options = {
 const config = {Zone: Zone}; //je to vedle aby se pokaždné nevytvářel znova objekt
 export default function Player() {
     //WARN: nedavat hooky mimo komponentu !!!
-    const fetchUrl = "http://localhost:8000/api/layouts/2" //INFO: nevim ted je nemmene id
+    const fetchUrl = "http://localhost:8000/api/layouts/1" //INFO: nevim ted je nemmene id
     const [layout, setLayout] = useState(null);
     useEffect(() => {
         const fetchLayout = async () => {
             try {
                 const response = await fetch(fetchUrl);
-                const data = await response.json();
-
-                //když je už mame stejny layout jako ten co je fetchnuty tak nererenderujeme
-                if (data.grid_json === layout) {
-                    console.log("layouty jsou stejne");
-                } else {
-                    setLayout(data.grid_json);
+                if (!response.ok) {
+                    throw new Error(`nepovedlo se fetchnout layout ${response.status}`);
                 }
+                const data = await response.json();
+                if (!data || !data.grid_json){
+                    throw new Error(`Grid json neni validni`);
+                }
+
+                console.log("layout je fetchnuty");
+                //když je už mame stejny layout jako ten co je fetchnuty tak nererenderujeme
+                setLayout(layout => {
+                    if (layout != null && JSON.stringify(data.grid_json) === JSON.stringify(layout)) {
+                        console.log("layouty jsou stejne");
+                        return layout;
+                    } else {
+                        console.log("layout je nastaven");
+                        return data.grid_json;
+                    }
+                })
+
+
             } catch (error) {
-                console.log("Layout fetch Error: " + Error);
+                console.log("Layout fetch Error: " + error);
             }
         }
+        fetchLayout();
         const interval = setInterval(() => {
             fetchLayout();
-        }, 30 * 60 * 1000); //každých 30 sekund
+        }, 30 * 1000); //každých 30 sekund
         return () =>  clearInterval(interval);
-    }, [])
+    }, []);
     if (layout === null) {
         return <div><strong>Louding</strong></div>;
     } else {
         return (
-            <GridStack options={layout} components={config} />
+            <GridStack key={JSON.stringify(layout)} options={layout} components={config} />
         )
     }
 }

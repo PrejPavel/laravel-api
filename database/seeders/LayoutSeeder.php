@@ -13,8 +13,10 @@ class LayoutSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        Layout::create([
+        //updateOrCreate(["id" => 1] <-- updatovalo by pro to id
+        Layout::updateOrCreate([
+            "id" => 1],
+        [
             'name' => 'Testovací layout',
             'grid_json' => json_decode(file_get_contents(database_path('seeders/layout.json')), true),
         ]);
