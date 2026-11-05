@@ -37,7 +37,7 @@ const options = {
 const config = {Zone: Zone}; //je to vedle aby se pokaždné nevytvářel znova objekt
 export default function Player() {
     //WARN: nedavat hooky mimo komponentu !!!
-    const fetchUrl = "http://localhost:8000/api/layouts/2" //TODO: nevim ted je nemmene id
+    const fetchUrl = "http://localhost:8000/api/layouts/2" //INFO: nevim ted je nemmene id
     const [layout, setLayout] = useState(null);
     useEffect(() => {
         const fetchLayout = async () => {
@@ -49,7 +49,10 @@ export default function Player() {
                 console.log("Layout fetch Error: " + Error);
             }
         }
-        fetchLayout();
+        const interval = setInterval(() => {
+            fetchLayout();
+        }, 30 * 60 * 1000); //každých 30 sekund
+        return () =>  clearInterval(interval);
     }, [])
     if (layout === null) {
         return <div><strong>Louding</strong></div>;
