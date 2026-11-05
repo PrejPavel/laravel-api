@@ -44,7 +44,13 @@ export default function Player() {
             try {
                 const response = await fetch(fetchUrl);
                 const data = await response.json();
-                setLayout(data.grid_json);
+
+                //když je už mame stejny layout jako ten co je fetchnuty tak nererenderujeme
+                if (data.grid_json === layout) {
+                    console.log("layouty jsou stejne");
+                } else {
+                    setLayout(data.grid_json);
+                }
             } catch (error) {
                 console.log("Layout fetch Error: " + Error);
             }
