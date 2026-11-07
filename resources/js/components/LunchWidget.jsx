@@ -31,7 +31,6 @@ export default function LunchWidget({fetchUrl, numberOfDays}) {
                         setLunch(data);
                     }
                 }
-                console.log(data);
             } catch (error) {
                 console.log(error);
                 setError(error);
