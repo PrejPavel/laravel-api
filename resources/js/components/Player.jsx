@@ -37,14 +37,21 @@ const options = {
 const config = {Zone: Zone}; //je to vedle aby se pokaždné nevytvářel znova objekt
 export default function Player() {
     //WARN: nedavat hooky mimo komponentu !!!
-    const fetchUrl = "http://localhost:8000/api/layouts/1" //INFO: nevim ted je nemmene id
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
+    const fetchUrl = `/api/player/${token}`
     const [layout, setLayout] = useState(null);
+    const [error, setError] = useState(null);
     useEffect(() => {
+        if (!token) return;
         const fetchLayout = async () => {
             try {
                 const response = await fetch(fetchUrl);
                 if (!response.ok) {
-                    throw new Error(`nepovedlo se fetchnout layout ${response.status}`);
+                    const error = new Error(`Unable to fetch ${response.status}`);
+                    error.status = response.status;
+                    throw error;
                 }
                 const data = await response.json();
                 if (!data || !data.grid_json){
@@ -61,11 +68,11 @@ export default function Player() {
                         console.log("layout je nastaven");
                         return data.grid_json;
                     }
-                })
-
-
+                });
+                setError(null);
             } catch (error) {
-                console.log("Layout fetch Error: " + error);
+                console.log("Layout fetch Error: " + error.message);
+                setError(error);
             }
         }
         fetchLayout();
@@ -73,12 +80,21 @@ export default function Player() {
             fetchLayout();
         }, 30 * 1000); //každých 30 sekund
         return () =>  clearInterval(interval);
-    }, []);
+    }, [fetchUrl, token]);
+
+    if (!token) {
+        return <div>V URL není Token</div>
+    }
+    if (error && layout === null) {
+        if (error.status === 404) {return <div>Layout nebyl nalezen {error.status}</div>;}
+        if (error.status === 409) {return <div>Layout není nastaven {error.status}</div>;}
+        return <div>Chyba {error.status ? error.status : "chyba pripojeni"}</div>;
+    }
     if (layout === null) {
         return <div><strong>Louding</strong></div>;
-    } else {
-        return (
-            <GridStack key={JSON.stringify(layout)} options={layout} components={config} />
-        )
     }
+    return (
+        <GridStack key={JSON.stringify(layout)} options={layout} components={config} />
+    )
+
 }
