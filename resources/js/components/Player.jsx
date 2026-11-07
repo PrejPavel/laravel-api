@@ -40,11 +40,11 @@ export default function Player() {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
 
-    const fetchUrl = `/api/player/${token}`
     const [layout, setLayout] = useState(null);
     const [error, setError] = useState(null);
     useEffect(() => {
         if (!token) return;
+        const fetchUrl = `api/player/${token}`
         const fetchLayout = async () => {
             try {
                 const response = await fetch(fetchUrl);
@@ -80,7 +80,7 @@ export default function Player() {
             fetchLayout();
         }, 30 * 1000); //každých 30 sekund
         return () =>  clearInterval(interval);
-    }, [fetchUrl, token]);
+    }, [ token]);
 
     if (!token) {
         return <div>V URL není Token</div>
