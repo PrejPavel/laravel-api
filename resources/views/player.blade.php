@@ -6,8 +6,6 @@
     <title>Player</title>
     @viteReactRefresh
     @vite('resources/js/player.jsx')
-    <link href="node_modules/gridstack/dist/gridstack.min.css" rel="stylesheet"/>
-    <script src="node_modules/gridstack/dist/gridstack-all.js"></script>
 </head>
     <body>
         <div id="player" style="background-color: crimson"></div>

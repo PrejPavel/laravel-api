@@ -44,7 +44,7 @@ export default function Player() {
     const [error, setError] = useState(null);
     useEffect(() => {
         if (!token) return;
-        const fetchUrl = `api/player/${token}`
+        const fetchUrl = `/api/player/${token}`
         const fetchLayout = async () => {
             try {
                 const response = await fetch(fetchUrl);
