@@ -20,6 +20,10 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
    ```bash
    npm install 
    ```
+5.5 jeste copmoser install
+ ```bash
+   composer install --nevim jak se to pise si to nepamatuju 
+   ```
 6. nějaky encryption key, aby nebyly problemy potom to řvalo na mě se mi nelibilo
    ```bash
    php artisan key:generate 
@@ -27,7 +31,7 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
 7. ```bash
    php artisan migrate
    ```
-8. nastavit .env soubor hlavně se prostě ujistit, že tam je mysql místo sqlite
+8. nastavit .env soubor hlavně se prostě ujistit, že tam je mysql místo sqlite, no a vytvorit ho bo tam neni nevim jak to je
 
 All security vulnerabilities will be promptly addressed.
 
