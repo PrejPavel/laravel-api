@@ -5,6 +5,8 @@ import 'gridstack/dist/gridstack.min.css';
 import ClockWidget from "./ClockWidget.jsx";
 import TextWidget from "./TextWidget.jsx";
 //TODO: config ze souboru uz me to stve
+//TODO: Oznamit uložení uživateli
+//TODO: Ošetření
 const config = {Zone: Zone, ClockWidget: ClockWidget, TextWidget: TextWidget}; //je to vedle aby se pokaždné nevytvářel znova objekt
 export default function Admin() {
     const [layout, setLayout] = useState(null);
