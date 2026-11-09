@@ -41,7 +41,7 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
    php artisan db:seed --class=LayoutSeeder 
    ```
 
-All security vulnerabilities will not be promptly addressed.
+All security vulnerabilities will **not** be promptly addressed.
 
 ### neco pro github codespaces bo jinak mi to nefunguje
 ```JavaScript
