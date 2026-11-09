@@ -35,7 +35,15 @@ export default function Admin() {
 
     const handleChange = (e, items) => {
         console.log("items changed", items);
-        console.log("JOSN", JSON.stringify(items));
+        //console.log("JOSN", JSON.stringify(items)); //WARN: triggers cyclic object value
+        const mapItems = items.map( item => ({
+                id: item.id,
+                x: item.x,
+                y: item.y,
+                w: item.w,
+                h: item.h,
+        }));
+        console.log(JSON.stringify(mapItems));
     }
 
     if (error) {
