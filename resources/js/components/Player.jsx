@@ -1,6 +1,8 @@
 import {GridStack} from "gridstack/dist/react";
 import 'gridstack/dist/gridstack.min.css';
 import Zone from "./Zone.jsx";
+import ClockWidget from "./ClockWidget.jsx";
+import TextWidget from "./TextWidget.jsx";
 import {useState, useEffect } from "react";
 
 /*
@@ -34,7 +36,7 @@ const options = {
 }
 */
 
-const config = {Zone: Zone}; //je to vedle aby se pokaždné nevytvářel znova objekt
+const config = {Zone: Zone, ClockWidget: ClockWidget, TextWidget: TextWidget}; //je to vedle aby se pokaždné nevytvářel znova objekt
 export default function Player() {
     //WARN: nedavat hooky mimo komponentu !!!
     const params = new URLSearchParams(window.location.search);

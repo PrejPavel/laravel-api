@@ -21,6 +21,15 @@
                     {"widget": "lunch", "seconds": 6, "props": {"fetchUrl": "/api/icanteenData"}}
                 ]
             }
+        },
+        {
+            "id": "c", "x": 4, "y": 2, "w": 1, "h": 5,
+            "component": "ClockWidget"
+        },
+        {
+            "id": "d", "x": 4, "y": 1, "w": 1, "h": 2,
+            "component": "TextWidget",
+            "props": {"text": "proc to jede a nejede pomoc"}
         }
     ]
 }
