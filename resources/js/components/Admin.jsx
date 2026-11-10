@@ -12,8 +12,10 @@ export default function Admin() {
     const [layout, setLayout] = useState(null);
     const [error, setError] = useState(null);
     const layoutRef = useRef(undefined);
+    const [saving, setSaving] = useState(false);
+
     useEffect(() => {
-        const fetchUrl = `/api/layouts/1`
+        const fetchUrl = `api/layouts/1`
         const fetchLayout = async () => {
             try {
                 const response = await fetch(fetchUrl);
@@ -44,11 +46,11 @@ export default function Admin() {
         console.log(layoutRef.current);
 
         items.forEach(item => {
-            const Zone = layoutRef.current.children.find(child => child.id === item.id);
-            Zone.w = item.w;
-            Zone.y = item.y;
-            Zone.x = item.x;
-            Zone.h = item.h;
+            const changedZone = layoutRef.current.children.find(child => child.id === item.id);
+            changedZone.w = item.w;
+            changedZone.y = item.y;
+            changedZone.x = item.x;
+            changedZone.h = item.h;
         })
         console.log("ů layoutref",layoutRef.current);
 
@@ -63,8 +65,9 @@ export default function Admin() {
         console.log(JSON.stringify(mapItems));
         */
     }
-    const handleSave =async () => {
+    const handleSave = async () => {
         try {
+            setSaving(true);
             const response = await fetch("api/layouts/1",{
                 method: "PUT",
                 headers: {
@@ -73,12 +76,18 @@ export default function Admin() {
                 },
                 body: JSON.stringify({grid_json: layoutRef.current})
             });
+            if(response.ok){
+                setSaving(false);
+                console.log("Layout is saved successfully (i think)");//TODO: replace with message or alert of some sorts
+            }
             if (!response.ok) {
                 console.log(response);
                 throw new Error(`Unable to update ${response.status}`);
             }
         } catch (error) {
             console.log(error.message);
+            setError(error);
+            setSaving(false);
         }
     }
 
@@ -89,9 +98,10 @@ export default function Admin() {
         return <div><strong>Louding</strong></div>;
     }
     console.log("layout loaded");
+    //TODO: replace save button with a component
     return (
         <>
-            <button onClick={handleSave} >Save</button>
+            <button onClick={handleSave} >{saving ? "Saving..." : "Save"}</button>
             <GridStack options={layout} components={config} onChange={handleChange} />
         </>
     )
