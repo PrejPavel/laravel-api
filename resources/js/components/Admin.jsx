@@ -1,9 +1,10 @@
 import Zone from "./Zone.jsx";
 import {useEffect, useRef, useState} from "react";
-import {GridStack} from "gridstack/dist/react";
+import {GridStack, useGridStack} from "gridstack/dist/react";
 import 'gridstack/dist/gridstack.min.css';
 import ClockWidget from "./ClockWidget.jsx";
 import TextWidget from "./TextWidget.jsx";
+import SaveButton from "./SaveButton.jsx";
 //TODO: config ze souboru uz me to stve
 //TODO: Oznamit uložení uživateli
 //TODO: Ošetření
@@ -12,7 +13,8 @@ export default function Admin() {
     const [layout, setLayout] = useState(null);
     const [error, setError] = useState(null);
     const layoutRef = useRef(undefined);
-    const [saving, setSaving] = useState(false);
+    //const [saving, setSaving] = useState(false);
+    //TODO: useGridStack
 
     useEffect(() => {
         const fetchUrl = `api/layouts/1`
@@ -67,7 +69,7 @@ export default function Admin() {
     }
     const handleSave = async () => {
         try {
-            setSaving(true);
+            //setSaving(true);
             const response = await fetch("api/layouts/1",{
                 method: "PUT",
                 headers: {
@@ -77,7 +79,7 @@ export default function Admin() {
                 body: JSON.stringify({grid_json: layoutRef.current})
             });
             if(response.ok){
-                setSaving(false);
+                //setSaving(false);
                 console.log("Layout is saved successfully (i think)");//TODO: replace with message or alert of some sorts
             }
             if (!response.ok) {
@@ -87,7 +89,7 @@ export default function Admin() {
         } catch (error) {
             console.log(error.message);
             setError(error);
-            setSaving(false);
+            //setSaving(false);
         }
     }
 
@@ -101,8 +103,8 @@ export default function Admin() {
     //TODO: replace save button with a component
     return (
         <>
-            <button onClick={handleSave} >{saving ? "Saving..." : "Save"}</button>
-            <GridStack options={layout} components={config} onChange={handleChange} />
+            <SaveButton handleSave={handleSave}/>
+            <GridStack options={layout} components={config} onChange={handleChange}/>
         </>
     )
 }
