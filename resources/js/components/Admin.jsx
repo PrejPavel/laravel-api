@@ -9,6 +9,8 @@ import SaveButton from "./SaveButton.jsx";
 //TODO: config ze souboru uz me to stve
 //TODO: Oznamit uložení uživateli
 //TODO: Ošetření
+//TODO: alertnout uživatele pokud je prazdny Zone aby se na playerovi nezobrazil error
+//      nebo nezobrazovat error ale alertovat v adminu že to je problem
 const config = {Zone: Zone, ClockWidget: ClockWidget, TextWidget: TextWidget}; //je to vedle aby se pokaždné nevytvářel znova objekt
 function GridBridge({ addWidgetRef }) {
     const { addWidget } = useGridStack();
@@ -74,6 +76,12 @@ export default function Admin() {
         console.log(JSON.stringify(mapItems));
         */
     }
+    const handleRemoved = (e, items) => {
+        const removedIds = items.map(item => String(item.id));
+        layoutRef.current.children = layoutRef.current.children.filter(
+            child => !removedIds.includes(String(child.id))
+        );
+    };
     const handleSave = async () => {
         try {
             //setSaving(true);
@@ -108,11 +116,13 @@ export default function Admin() {
     }
     console.log("layout loaded");
     //TODO: replace save button with a component
+    //<button onClick={handleRemoveWidget}>Remove widget</button>
     return (
         <>
             <SaveButton onSave={handleSave}/>
             <AddWidgetButton layoutRef={layoutRef} addWidgetRef={addWidgetRef}/>
-            <GridStack options={layout} components={config} onChange={handleChange}>
+            <div className="trash-zone">Drop here to remove widget!</div>
+            <GridStack options={layout} components={config} onChange={handleChange} onRemoved={handleRemoved}>
                 <GridBridge addWidgetRef={addWidgetRef}/>
             </GridStack>
         </>
