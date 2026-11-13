@@ -1,6 +1,7 @@
 import Zone from "./Zone.jsx";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useImperativeHandle, useRef, useState} from "react";
 import {GridStack, useGridStack} from "gridstack/dist/react";
+import AddWidgetButton from "./AddWidgetButton.jsx";
 import 'gridstack/dist/gridstack.min.css';
 import ClockWidget from "./ClockWidget.jsx";
 import TextWidget from "./TextWidget.jsx";
@@ -9,12 +10,18 @@ import SaveButton from "./SaveButton.jsx";
 //TODO: Oznamit uložení uživateli
 //TODO: Ošetření
 const config = {Zone: Zone, ClockWidget: ClockWidget, TextWidget: TextWidget}; //je to vedle aby se pokaždné nevytvářel znova objekt
+function GridBridge({ addWidgetRef }) {
+    const { addWidget } = useGridStack();
+    useImperativeHandle(addWidgetRef, () => ({
+        addWidget
+    }), [addWidget]);
+    return null;
+}
 export default function Admin() {
+    const addWidgetRef = useRef(null);
     const [layout, setLayout] = useState(null);
     const [error, setError] = useState(null);
     const layoutRef = useRef(undefined);
-    //const [saving, setSaving] = useState(false);
-    //TODO: useGridStack
 
     useEffect(() => {
         const fetchUrl = `api/layouts/1`
@@ -32,7 +39,7 @@ export default function Admin() {
                 }
                 console.log("layout je fetchnuty");
                 //když je už mame stejny layout jako ten co je fetchnuty tak nererenderujeme
-                layoutRef.current = data.grid_json; //INFO: structuredClone
+                layoutRef.current = structuredClone(data.grid_json); //INFO: structuredClone
                 setLayout(data.grid_json);
             } catch (error) {
                 console.log("Layout fetch Error: " + error.message);
@@ -48,12 +55,12 @@ export default function Admin() {
         console.log(layoutRef.current);
 
         items.forEach(item => {
-            const changedZone = layoutRef.current.children.find(child => child.id === item.id);
+            const changedZone = layoutRef.current.children.find(child => String(child.id) === String(item.id));
             changedZone.w = item.w;
             changedZone.y = item.y;
             changedZone.x = item.x;
             changedZone.h = item.h;
-        })
+        });
         console.log("ů layoutref",layoutRef.current);
 
         /*
@@ -76,7 +83,7 @@ export default function Admin() {
                     "Content-Type": "application/json",
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({grid_json: layoutRef.current})
+                body: JSON.stringify({grid_json: layoutRef.current})//cyclic object value when new zone has been added
             });
             if(response.ok){
                 //setSaving(false);
@@ -103,8 +110,11 @@ export default function Admin() {
     //TODO: replace save button with a component
     return (
         <>
-            <SaveButton handleSave={handleSave}/>
-            <GridStack options={layout} components={config} onChange={handleChange}/>
+            <SaveButton onSave={handleSave}/>
+            <AddWidgetButton layoutRef={layoutRef} addWidgetRef={addWidgetRef}/>
+            <GridStack options={layout} components={config} onChange={handleChange}>
+                <GridBridge addWidgetRef={addWidgetRef}/>
+            </GridStack>
         </>
     )
 }
