@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 
 class ScreenController extends Controller
 {
-    //
+    public function index() {
+        $screens = Screen::all();
+        return response()->json($screens);
+    }
     public function getScreen($token) {
         $screen = Screen::with('layout')->where('token', $token)->firstOrFail();
         if (!$screen->layout) {
