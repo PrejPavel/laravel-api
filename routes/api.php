@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ScreenController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/icanteenData',[icanteenData::class, 'scrape']); //prvni je ta uri /api/icanteenData a pokud tam pujdu zavolam kontroler a metodu v nem
-Route::get("layouts/{id}", [LayoutController::class, 'show']);
+Route::apiResource("screens", ScreenController::class);
 Route::get("player/{token}", [ScreenController::class, 'getScreen'] );
+//layouts
+Route::get("layouts/{id}", [LayoutController::class, 'show']);
 Route::put("layouts/{id}", [LayoutController::class, 'update']);
+//messages
+Route::apiResource("messages", MessageController::class);

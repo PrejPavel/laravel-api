@@ -84,6 +84,27 @@ export default function Player() {
         return () =>  clearInterval(interval);
     }, [ token]);
 
+    useEffect(() => {
+        const fetchUrl = `https://znamky.spseiostrava.cz/if/2/substitutions/public/20261113`
+        const credentials = btoa(`prosim proc totu je:fakt to tu nesmi byt proste`)
+        const fetchBak = async () => {
+            try {
+                const response = await fetch(fetchUrl, {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        "Authorization": `Basic ${credentials}`
+                    }
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchBak();
+    }, []);
+
     if (!token) {
         return <div>V URL není Token</div>
     }
