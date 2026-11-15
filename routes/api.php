@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ScreenController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\icanteenData;
@@ -19,3 +20,5 @@ Route::get("layouts/{id}", [LayoutController::class, 'show']);
 Route::put("layouts/{id}", [LayoutController::class, 'update']);
 //messages
 Route::apiResource("messages", MessageController::class);
+Route::get('/videos/{filename}', [VideoController::class, 'show']);
+
