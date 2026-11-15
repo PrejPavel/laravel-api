@@ -55,15 +55,15 @@ export default function AdminMessages() {
             <button onClick={handleRefresh}>refresh</button>
             <table>
                 <thead>
-                    <tr>
-                        <th>index</th>
-                        <th>name</th>
-                        <th>body</th>
-                        <th>valid_from</th>
-                        <th>valid_to</th>
-                        <th>priority</th>
-                        <th>screens</th>
-                    </tr>
+                <tr>
+                    <th>index</th>
+                    <th>name</th>
+                    <th>body</th>
+                    <th>valid_from</th>
+                    <th>valid_to</th>
+                    <th>priority</th>
+                    <th>screens</th>
+                </tr>
                 </thead>
                 <tbody>
                 {message.map((message, index) => (

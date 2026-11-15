@@ -16,9 +16,9 @@ class MessageController extends Controller
     public function store(Request $request) {
         $validated = $this->validateMessage($request);
         $message = Message::create($validated);
-        $message->screens()->sync($validated["screens_ids"]);
+        $message->screens()->sync($validated["screen_ids"]);
 
-        return response()->json($message->load("screens:id, name"),201);
+        return response()->json($message->load("screens:id,name"),201);
     }
 
     public function update(Request $request, Message $message) {

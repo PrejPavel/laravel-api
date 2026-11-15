@@ -7,7 +7,8 @@ import ClockWidget from "./ClockWidget.jsx";
 import TextWidget from "./TextWidget.jsx";
 import SaveButton from "./SaveButton.jsx";
 import { GridStack as GridStackCore } from "gridstack";
-import AdminMessages from "@/components/AdminMessages.jsx";
+import AdminMessages from "./AdminMessages.jsx";
+import AdminForm from "./AdminForm.jsx";
 //TODO: config ze souboru uz me to stve
 //TODO: Oznamit uložení uživateli
 //TODO: Ošetření
@@ -182,6 +183,7 @@ export default function Admin() {
     return (
         <>
             <AdminMessages/>
+            <AdminForm/>
             <SaveButton onSave={handleSave}/>
             <AddWidgetButton layoutRef={layoutRef} addWidgetRef={addWidgetRef}/>
             <div className="trash-zone">Drop here to remove widget!</div>
