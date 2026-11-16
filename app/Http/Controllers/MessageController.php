@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -12,7 +13,10 @@ class MessageController extends Controller
         $messages = Message::with("screens:id,name")->orderByDesc("priority")->get();
         return response()->json($messages);
     }
-
+    public function show($message_id): JsonResponse {
+        $message = Message::findOrFail($message_id);
+        return response()->json($message);
+    }
     public function store(Request $request) {
         $validated = $this->validateMessage($request);
         $message = Message::create($validated);
@@ -24,9 +28,9 @@ class MessageController extends Controller
     public function update(Request $request, Message $message) {
         $validated = $this->validateMessage($request);
         $message->update($validated);
-        $message->screens()->sync($validated["screens_ids"]);
+        $message->screens()->sync($validated["screen_ids"]);
 
-        return response()->json($message->load("screens:id, name"),200);
+        return response()->json($message->load("screens:id,name"));
     }
 
     public function destroy(Message $message) {

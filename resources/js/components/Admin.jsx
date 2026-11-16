@@ -9,6 +9,7 @@ import SaveButton from "./SaveButton.jsx";
 import { GridStack as GridStackCore } from "gridstack";
 import AdminMessages from "./AdminMessages.jsx";
 import AdminForm from "./AdminForm.jsx";
+import VideoWidget from "./VideoWidget.jsx";
 //TODO: config ze souboru uz me to stve
 //TODO: Oznamit uložení uživateli
 //TODO: Ošetření
@@ -27,6 +28,8 @@ export default function Admin() {
     const [layout, setLayout] = useState(null);
     const [error, setError] = useState(null);
     const layoutRef = useRef(undefined);
+    const [editingMessage, setEditingMessage] = useState(null);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
 
     useEffect(() => {
         const fetchUrl = `/api/layouts/1`
@@ -171,6 +174,12 @@ export default function Admin() {
         }
     }
 
+    const handleFormSuccess = () => {
+        setEditingMessage(null);
+        setRefreshTrigger(prev => prev + 1);
+        console.log("handlujem form sakses");
+    }
+
     if (error) {
         return (<div>Error: {error.message}</div>)
     }
@@ -182,8 +191,9 @@ export default function Admin() {
     //<button onClick={handleRemoveWidget}>Remove widget</button>
     return (
         <>
-            <AdminMessages/>
-            <AdminForm/>
+            <AdminMessages onEdit={(message) => setEditingMessage(message)} refreshTrigger={refreshTrigger} />
+            <AdminForm key={editingMessage ? editingMessage.id : "new"} editingMessage={editingMessage}
+                       onSuccess={handleFormSuccess} onCancel={() => setEditingMessage(null)} />
             <SaveButton onSave={handleSave}/>
             <AddWidgetButton layoutRef={layoutRef} addWidgetRef={addWidgetRef}/>
             <div className="trash-zone">Drop here to remove widget!</div>
