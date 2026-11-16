@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from "react";
 
 
-export default function AdminMessages() {
+export default function AdminMessages({onEdit, refreshTrigger}) {
     const [message, setMessage] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -31,7 +31,7 @@ export default function AdminMessages() {
         return () => {
             ignore = true;
         };
-    }, [getMessagesData]);
+    }, [getMessagesData, refreshTrigger]);
 
     const handleRefresh = () => {
         setLoading(true);
@@ -45,10 +45,27 @@ export default function AdminMessages() {
             });
     };
 
+    const handleDelete = async (deleteId) => {
+        setLoading(true);
+        try {
+            const response = await fetch("/api/messages/" + deleteId, {
+                method: "DELETE",
+                headers: {
+                    Accept: "application/json",
+                }
+            });
+            if (response.ok) {
+                setMessage((prevMessage) => (prevMessage.filter((item) => item.id !== deleteId)));
+            }
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    }
     if (loading) {
         return <div>Loadign Messages </div>
     }
-
     return (
         <>
             <div>Zprávy</div>
@@ -63,6 +80,7 @@ export default function AdminMessages() {
                     <th>valid_to</th>
                     <th>priority</th>
                     <th>screens</th>
+                    <th>action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,6 +94,12 @@ export default function AdminMessages() {
                         <td>{message.priority}</td>
                         <td>{message.screens && message.screens.length > 0
                             ? message.screens.map((s) => s.name).join(", ") : "noscreen😨"}</td>
+                        <td>
+                            <button className="delete-btn" onClick={() => handleDelete(message.id)}>Smazat</button>
+                        </td>
+                        <td>
+                            <button className="edit-btn" onClick={() => onEdit(message)}>Upravit</button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>

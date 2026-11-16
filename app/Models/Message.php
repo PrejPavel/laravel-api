@@ -16,7 +16,7 @@ class Message extends Model
     ];
 
     public function screens() : BelongsToMany {
-        return $this->belongsToMany(Message::class, "message_screen", "message_id", "screen_id");
+        return $this->belongsToMany(Screen::class, "message_screen", "message_id", "screen_id");
     }
 
     protected function casts(): array
