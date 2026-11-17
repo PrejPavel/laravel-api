@@ -4,6 +4,7 @@ import Zone from "./Zone.jsx";
 import ClockWidget from "./ClockWidget.jsx";
 import TextWidget from "./TextWidget.jsx";
 import {useState, useEffect } from "react";
+import MessageWidget from "./MessageWidget.jsx";
 
 /*
 const options = {
@@ -117,7 +118,10 @@ export default function Player() {
         return <div><strong>Louding</strong></div>;
     }
     return (
-        <GridStack key={JSON.stringify(layout)} options={layout} components={config} />
+        <>
+            <GridStack key={JSON.stringify(layout)} options={layout} components={config} />
+            <MessageWidget token={token} />
+        </>
     )
 
 }
