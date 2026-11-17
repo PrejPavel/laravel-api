@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\Screen;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -16,6 +18,20 @@ class MessageController extends Controller
     public function show($message_id): JsonResponse {
         $message = Message::findOrFail($message_id);
         return response()->json($message);
+    }
+
+    public function getMessages($token): JsonResponse {
+        //zobrazit message pro dane screen s tim tokenem
+        $now = Carbon::now();
+        $screen = Screen::where('token', $token)->firstOrFail();
+        $messages = $screen->messages()
+            ->select("messages.id","name","body","priority")
+            ->where('valid_from', '<=', $now)
+            ->where('valid_to', '>=', $now)
+            ->whereColumn('valid_from', '<', 'valid_to')
+            ->orderBy("priority", "asc")->get();
+
+        return response()->json($messages);
     }
     public function store(Request $request) {
         $validated = $this->validateMessage($request);

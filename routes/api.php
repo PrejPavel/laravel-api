@@ -20,5 +20,7 @@ Route::get("layouts/{id}", [LayoutController::class, 'show']);
 Route::put("layouts/{id}", [LayoutController::class, 'update']);
 //messages
 Route::apiResource("messages", MessageController::class);
+Route::get("player/{token}/messages", [MessageController::class, 'getMessages']);
+
 Route::get('/videos/{filename}', [VideoController::class, 'show']);
 
