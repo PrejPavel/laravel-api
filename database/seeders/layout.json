@@ -18,7 +18,7 @@
             "props": {
                 "items": [
                     {"widget": "clock", "seconds": 2},
-                    {"widget": "lunch", "seconds": 6, "props": {"fetchUrl": "/api/icanteenData"}}
+                    {"widget": "lunch", "seconds": 6, "props": {"fetchUrl": "/api/sources/icanteen"}}
                 ]
             }
         },
@@ -30,6 +30,15 @@
             "id": "d", "x": 4, "y": 1, "w": 1, "h": 2,
             "component": "TextWidget",
             "props": {"text": "proc to jede a nejede pomoc"}
+        },
+        {
+            "id": "e", "x": 4, "y": 4, "w": 1, "h": 17.2,
+            "component": "Zone",
+            "props": {
+                "items": [
+                    {"widget": "video", "seconds": 2, "props": {"fileName": "legitimateseriouswhiteeye.mp4"}}
+                ]
+            }
         }
     ]
 }
