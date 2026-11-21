@@ -85,6 +85,7 @@ export default function Player() {
         return () =>  clearInterval(interval);
     }, [ token]);
 
+    /*
     useEffect(() => {
         const fetchUrl = `https://znamky.spseiostrava.cz/if/2/substitutions/public/20261113`
         const credentials = btoa(`prosim proc totu je:fakt to tu nesmi byt proste`)
@@ -105,7 +106,7 @@ export default function Player() {
         }
         fetchBak();
     }, []);
-
+*/
     if (!token) {
         return <div>V URL není Token</div>
     }

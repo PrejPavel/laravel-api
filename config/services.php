@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'bakalari' => [
+        'url' => env('BAKALARI_URL'),
+        'username' => env('BAKALARI_USERNAME'),
+        'password' => env('BAKALARI_PASSWORD'),
+    ],
 ];
