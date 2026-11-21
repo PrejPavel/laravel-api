@@ -39,6 +39,15 @@
                     {"widget": "video", "seconds": 2, "props": {"fileName": "legitimateseriouswhiteeye.mp4"}}
                 ]
             }
+        },
+        {
+            "id": "f", "x": 6, "y": 1, "w": 1, "h": 1,
+            "component": "Zone",
+            "props": {
+                "items": [
+                    {"widget": "bakalari", "seconds": 2}
+                ]
+            }
         }
     ]
 }

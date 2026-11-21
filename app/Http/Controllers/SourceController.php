@@ -6,7 +6,7 @@ use App\Models\Source;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
-class SourcesController extends Controller
+class SourceController extends Controller
 {
     public function index()
     {

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ScreenController;
-use App\Http\Controllers\SourcesController;
+use App\Http\Controllers\SourceController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +24,7 @@ Route::apiResource("messages", MessageController::class);
 Route::get("player/{token}/messages", [MessageController::class, 'getMessages']);
 
 //sources
-Route::apiResource("sources", SourcesController::class);
+Route::apiResource("sources", SourceController::class);
 Route::get('/sources/{key}', [SourceController::class, 'show']);
 Route::get('/videos/{filename}', [VideoController::class, 'show']);
 
