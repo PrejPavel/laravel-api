@@ -28,15 +28,22 @@ Něco prostě na telku prostě chápeš 😎😎😎😎
    ```bash
    php artisan key:generate 
    ```
-8. nastavit .env soubor hlavně se prostě ujistit, že tam je mysql místo sqlite, no a vytvorit ho bo tam neni nevim jak to je
+8. vykopirovat .env.example
    ```bash
    cp .env.example .env
    ```
-9. Na databazi
+9. Nastavit tam databazi (mysql na xampp konfiguraci, jinak sqlite) nevim jestli to jde komandem kdyžtak pridame (✿◕‿◕✿)
    ```bash
-   php artisan migrate
+    BAKALARI_USERNAME=
+    BAKALARI_PASSWORD=
+        
+    DB_CONNECTION=sqlite
    ```
-10. A potom naplnit tu db seederama, classy jsou zatim jenom LayoutSeeder a ScreenSeeder
+10. Na databazi
+    ```bash
+    php artisan migrate
+    ```
+11. A potom naplnit tu db seederama, classy jsou zatim jenom LayoutSeeder a ScreenSeeder
    ```bash
    php artisan db:seed --class=LayoutSeeder 
    ```
