@@ -5,6 +5,8 @@ namespace App\Sources;
 use http\Exception\RuntimeException;
 use Carbon\Carbon;
 
+//TODO: ošetření
+
 class BakalariAdapter extends SourceAdapter
 {
 
@@ -18,8 +20,8 @@ class BakalariAdapter extends SourceAdapter
         $date = Carbon::today()->format("Ymd");
 
         $url = "https://znamky.spseiostrava.cz/if/2/substitutions/public/$date";
-        $uzivatel = config("services.bakalari.uzivatel");
-        $heslo = config("services.bakalari.heslo");
+        $uzivatel = config("services.bakalari.username");
+        $heslo = config("services.bakalari.password");
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
