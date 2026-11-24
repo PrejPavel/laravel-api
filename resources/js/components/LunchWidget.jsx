@@ -12,6 +12,7 @@ export default function LunchWidget({fetchUrl, numberOfDays}) {
     const [lunch, setLunch] = useState([]);
 
     useEffect(() => {
+        //TODO: replace by a helper function that is the same for all widgets that use a source
         const fetchLunch = async () => {
             try {
                 if (!fetchUrl) { return }

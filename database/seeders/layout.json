@@ -32,11 +32,11 @@
             "props": {"text": "proc to jede a nejede pomoc"}
         },
         {
-            "id": "e", "x": 4, "y": 4, "w": 1, "h": 17.2,
+            "id": "e", "x": 4, "y": 4, "w": 1, "h": 2,
             "component": "Zone",
             "props": {
                 "items": [
-                    {"widget": "video", "seconds": 2, "props": {"fileName": "legitimateseriouswhiteeye.mp4"}}
+                    {"widget": "news", "seconds": 2}
                 ]
             }
         },
