@@ -20,6 +20,7 @@ class RssNewsAdapter extends SourceAdapter
     /**
      * @inheritDoc
      */
+    //TODO: think about the limit and how it should work
     public function fetch(): array
     {
         $url = 'https://www.spseiostrava.cz/cs/aktuality?format=feed&type=rss';
@@ -37,7 +38,7 @@ class RssNewsAdapter extends SourceAdapter
                 }
                 $html = (string) $item->description;
                 $clean_html = html_entity_decode(strip_tags($html, '<p><br><strong><b><em><i><ul><ol><li>'), ENT_QUOTES, 'UTF-8');
-                $clean_html = preg_replace('/<[^>]+>/', '', $clean_html);
+                $clean_html = preg_replace('/[^\S \n]+/', '', $clean_html);
 
                 $pubDate = trim((string) $item->pubDate);
                 $formattedDate = Carbon::parse($pubDate)->format('d .m .y');
@@ -45,7 +46,9 @@ class RssNewsAdapter extends SourceAdapter
                 $items[] = [
                     "title" => trim((string) $item->title),
                     "link" => trim((string) $item->link),
-                    "description" => Str::limit($clean_html, 220),
+                    //INFO: didn't ended up liking the limit, subject to change
+                    //"description" => Str::limit($clean_html, 480),
+                    "description" => $clean_html,
                     "pubDate" => $formattedDate,
                     "categories" => $categories,
                 ];
