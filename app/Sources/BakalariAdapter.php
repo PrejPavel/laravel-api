@@ -12,7 +12,7 @@ class BakalariAdapter extends SourceAdapter
 
     public function key(): string
     {
-        return 'Bakalari';
+        return 'bakalari';
     }
 
     public function fetch(): array
