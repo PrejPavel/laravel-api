@@ -15,6 +15,7 @@ import VideoWidget from "./VideoWidget.jsx";
 //TODO: Ošetření
 //TODO: alertnout uživatele pokud je prazdny Zone aby se na playerovi nezobrazil error
 //      nebo nezobrazovat error ale alertovat v adminu že to je problem
+//TODO: Omezit uzivateli at se mu to vejde do viewportu nebo nejak to pohlidat proste
 const config = {Zone: Zone, ClockWidget: ClockWidget, TextWidget: TextWidget}; //je to vedle aby se pokaždné nevytvářel znova objekt
 function GridBridge({ addWidgetRef }) {
     const { addWidget } = useGridStack();

@@ -14,7 +14,7 @@ class IcanteenAdapter extends SourceAdapter
      */
     public function key(): string
     {
-        return 'Icanteen';
+        return 'icanteen';
     }
 
     /**
